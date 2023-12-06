@@ -1,19 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 public class Bomb : MonoBehaviour
 {
+    float timer, timeToExplode = 5;
     // Start is called before the first frame update
     void Start()
     {
-        
+        timer = timeToExplode;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Return)) {
+        timer -= Time.deltaTime;
+
+        if (timer < 0) {
             explode();
         }
 
@@ -32,7 +36,7 @@ public class Bomb : MonoBehaviour
             {
                 rb_victim.AddExplosionForce(2000, transform.position, 10);
             }
-
+            Destroy(gameObject);
 
         }
     }
