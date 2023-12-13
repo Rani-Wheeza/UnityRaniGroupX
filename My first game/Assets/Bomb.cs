@@ -34,6 +34,10 @@ public class Bomb : MonoBehaviour
             Rigidbody rb_victim = victim.GetComponent<Rigidbody>();
             if (rb_victim != null)
             {
+                foreach (Transform child in rb_victim.transform.GetComponentsInChildren<Transform>())
+                    child.parent = null;  
+                  
+                rb_victim.constraints = RigidbodyConstraints.None;
                 rb_victim.AddExplosionForce(2000, transform.position, 10);
             }
             Destroy(gameObject);

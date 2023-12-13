@@ -21,6 +21,7 @@ public class Eddcontrollscript : MonoBehaviour
         {
             transform.position += speed * transform.forward * Time.deltaTime;
             edAnimations.SetBool("shouldWalk", true);
+            IownCamera();
         }
         else
             edAnimations.SetBool("shouldWalk", false);
@@ -29,9 +30,42 @@ public class Eddcontrollscript : MonoBehaviour
         {
             
             edAnimations.SetBool("shouldjump", true);
+            IownCamera();
         }
         else 
             edAnimations.SetBool("shouldjump", false);
 
+        if (Input.GetKey(KeyCode.R))
+        {
+            IownCamera();
+            edAnimations.SetBool("shouldrun", true);
+        }
+        else
+            edAnimations.SetBool("shouldrun", false);
+
+        if (Input.GetKey(KeyCode.L))
+        {
+            IownCamera();
+            edAnimations.SetBool("shouldloose", true);
+        }
+        else
+            edAnimations.SetBool("shouldloose", false);
+
+        if (Input.GetKey(KeyCode.T))
+        {
+            IownCamera();
+            edAnimations.SetBool("shouldTPose", true);
+        }
+        else
+            edAnimations.SetBool("shouldTPose", false);
+
+
+    }
+
+    void IownCamera()
+    {
+        Camera.main.transform.parent = transform;
+        Camera.main.transform.localPosition = new Vector3(0, 1, -3);
     }
 }
+
