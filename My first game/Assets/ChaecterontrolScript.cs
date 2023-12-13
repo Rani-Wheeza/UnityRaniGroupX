@@ -22,29 +22,44 @@ public class ChaecterontrolScript : MonoBehaviour
         acceleration = Vector3.zero;
 
 
-        if (Input.GetKey(KeyCode.W))
+        if (Input.GetKey(KeyCode.F))
         { acceleration = transform.forward; };
 
-        if (Input.GetKey(KeyCode.S))
-        { acceleration = -transform.forward; };
+        if (Input.GetKey(KeyCode.M))
+        { acceleration = -transform.forward;
+            IownCamera();
+        };
 
-        if ( Input.GetKey(KeyCode.D))
-        { transform.Rotate(Vector3.up, rateOfRotation * Time.deltaTime); };
+        if ( Input.GetKey(KeyCode.N))
+        { transform.Rotate(Vector3.up, rateOfRotation * Time.deltaTime);
+            IownCamera();
+        };
 
 
         if (Input.GetKey(KeyCode.LeftArrow))
-        { transform.Rotate(Vector3.forward, rateOfRotation * Time.deltaTime); };
+        { transform.Rotate(Vector3.forward, rateOfRotation * Time.deltaTime);
+            IownCamera();
+        };
 
 
 
 
         if (Input.GetKey(KeyCode.UpArrow))
-        { transform.Rotate(Vector3.right, rateOfRotation * Time.deltaTime); };
+        { transform.Rotate(Vector3.right, rateOfRotation * Time.deltaTime);
+            IownCamera();
+        };
 
 
         velocity += acceleration * Time.deltaTime;
 
         // s       =      u        *       t
         transform.position += velocity * Time.deltaTime;
+    }
+
+
+    void IownCamera()
+    {
+        Camera.main.transform.parent = transform;
+        Camera.main.transform.localPosition = new Vector3(0, 1, -3);
     }
 }

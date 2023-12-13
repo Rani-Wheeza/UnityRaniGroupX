@@ -19,11 +19,21 @@ public class BomberGuyScript : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.A)) 
             transform.Rotate(Vector3.up, rotSpeed * Time.deltaTime);
+            IownCamera();
         if (Input.GetKey(KeyCode.D))
             transform.Rotate(Vector3.up, -rotSpeed * Time.deltaTime);
-        if (Input.GetKey(KeyCode.W))
+            IownCamera();
+        if (Input.GetKey(KeyCode.S))
             transform.position += currentSpeed * transform.forward * Time.deltaTime;
+            IownCamera();
         if (Input.GetKeyUp(KeyCode.B))
             Instantiate(bombCloneTemplate, transform.position, transform.rotation);
+            IownCamera();
+    }
+
+    void IownCamera()
+    {
+        Camera.main.transform.parent = transform;
+        Camera.main.transform.localPosition = new Vector3(0, 1, -3);
     }
 }
