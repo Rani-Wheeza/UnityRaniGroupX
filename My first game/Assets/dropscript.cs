@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BomberGuyScript : MonoBehaviour
+public class dropscript : MonoBehaviour
 {
 
     public GameObject bombCloneTemplate;
@@ -17,28 +17,27 @@ public class BomberGuyScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.C))
         {
             transform.Rotate(Vector3.up, rotSpeed * Time.deltaTime);
             IownCamera();
         }
-        if (Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.V))
         {
             transform.Rotate(Vector3.up, -rotSpeed * Time.deltaTime);
             IownCamera();
         }
-        if (Input.GetKey(KeyCode.S))
+        if (Input.GetKey(KeyCode.Z))
         {
             transform.position += currentSpeed * transform.forward * Time.deltaTime;
             IownCamera();
         }
-        if (Input.GetKeyUp(KeyCode.B))
+        if (Input.GetKeyUp(KeyCode.P))
         {
             Instantiate(bombCloneTemplate, transform.position, transform.rotation);
             IownCamera();
         }
     }
-
     void IownCamera()
     {
         Camera.main.transform.parent = transform;

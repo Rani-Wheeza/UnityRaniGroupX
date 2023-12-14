@@ -66,6 +66,7 @@ public class Eddcontrollscript : MonoBehaviour
     {
         Camera.main.transform.parent = transform;
         Camera.main.transform.localPosition = new Vector3(0, 1, -3);
+        Camera.main.transform.rotation = transform.rotation;
     }
 }
 
